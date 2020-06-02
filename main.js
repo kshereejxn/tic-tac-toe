@@ -1,5 +1,4 @@
 let currentPlayer = 'X'; 
-// X is the starting player.
 let playerXSelections = [];
 let playerOSelections = [];
 
@@ -25,8 +24,27 @@ for (let elementIndex = 0; elementIndex < cellElementArray.length; elementIndex 
     currentCellElement.addEventListener('click', function (event) {
        
         const clickedCellElement = event.target;
+
+    if (currentPlayer =="X"){
+        clickedCellElement.innerHTML = "X"
+        playerXSelections.push(clickedCellElement.id)
+
+        if (checkForWin(winningCombinations, playerXSelections) == true){
+            alert("X's Have Won")
+            console.log("X's Have Won")
+        }
+        currentPlayer = "O"
+    }
+    else{
+        clickedCellElement.innerHTML = "O"
+        playerOSelections.push(clickedCellElement.id)
+        if (checkForWin(winningCombinations, playerOSelections) == true){
+            alert("O's Have Won")
+            console.log ("O's Have Won")
+        }
+        currentPlayer = "X"
+    }
        
         console.log("You clicked on cell number: " + clickedCellElement.id)
     });
 }
-
