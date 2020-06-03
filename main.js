@@ -13,34 +13,54 @@ const winningCombinations = [
     [3, 5, 7]
 ];
 
-function checkForWin(winningCombinations, playerSelections){}
+function checkForWin(winningCombination, playerSelections){
+
+for (let winningIndex = 0; winningIndex < winningCombination.length; winningIndex ++){
+    let matches = 0
+
+for (let winningIndex2 = 0; winningIndex2 < 3; winningIndex2 ++){
+
+    for (let playerIndex = 0; playerIndex < playerSelections.length; playerIndex ++){
+        
+        if (playerSelections[playerIndex]== winningCombination[winningIndex][winningIndex2]){
+            matches += 1
+        }
+    }
+}
+if (matches===3){
+    return true
+}
+}
+}
 
 const cellElementArray = document.querySelectorAll('.grid-cell');
 
 for (let elementIndex = 0; elementIndex < cellElementArray.length; elementIndex += 1) {
     
-    const currentCellElement = cellElementArray[elementIndex]
+const currentCellElement = cellElementArray[elementIndex]
   
     currentCellElement.addEventListener('click', function (event) {
        
-        const clickedCellElement = event.target;
+const clickedCellElement = event.target;
 
-    if (currentPlayer =="X"){
+    if (currentPlayer ==="X"){
         clickedCellElement.innerHTML = "X"
         playerXSelections.push(clickedCellElement.id)
 
-        if (checkForWin(winningCombinations, playerXSelections) == true){
+        if (checkForWin(winningCombinations, playerXSelections) === true){
             alert("X's Have Won")
-            console.log("X's Have Won")
+            //console.log("X's Have Won")//
         }
         currentPlayer = "O"
+        
     }
     else{
         clickedCellElement.innerHTML = "O"
         playerOSelections.push(clickedCellElement.id)
-        if (checkForWin(winningCombinations, playerOSelections) == true){
+        checkForWin(winningCombinations, playerOSelections) 
+        if (checkForWin(winningCombinations, playerOSelections) == true) {
             alert("O's Have Won")
-            console.log ("O's Have Won")
+           // console.log ("O's Have Won")//
         }
         currentPlayer = "X"
     }
